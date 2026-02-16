@@ -2,7 +2,7 @@
 
 **スチームパンク風 縦スクロール弾幕シューティングゲーム**
 
-[![Play Now](https://img.shields.io/badge/🎮_Play_Now-GitHub_Pages-blue?style=for-the-badge)](https://YOUR_USERNAME.github.io/steampunk-shooter/)
+[![Play Now](https://img.shields.io/badge/🎮_Play_Now-GitHub_Pages-blue?style=for-the-badge)](https://k3peta.github.io/SteampunkSkies/)
 
 ---
 
@@ -68,7 +68,7 @@
 
 ```bash
 # リポジトリをクローン
-git clone https://github.com/YOUR_USERNAME/steampunk-shooter.git
+git clone https://github.com/k3peta/SteampunkSkies.git
 cd steampunk-shooter
 
 # 任意のHTTPサーバーで起動（例）
