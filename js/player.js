@@ -40,10 +40,21 @@ class Player {
 
         const spd = Input.isSlow() ? this.slowSpeed : this.speed;
         this.tilt = 0;
-        if (Input.isDown('ArrowLeft') || Input.isDown('KeyA')) { this.x -= spd; this.tilt = -1; }
-        if (Input.isDown('ArrowRight') || Input.isDown('KeyD')) { this.x += spd; this.tilt = 1; }
-        if (Input.isDown('ArrowUp') || Input.isDown('KeyW')) this.y -= spd;
-        if (Input.isDown('ArrowDown') || Input.isDown('KeyS')) this.y += spd;
+
+        // Touch analog movement (proportional speed)
+        const tx = Input.touchAxis('x');
+        const ty = Input.touchAxis('y');
+        if (tx !== 0 || ty !== 0) {
+            this.x += tx * spd;
+            this.y += ty * spd;
+            if (tx < -0.1) this.tilt = -1;
+            else if (tx > 0.1) this.tilt = 1;
+        }
+        // Keyboard digital movement (full speed, layered on top)
+        if (Input.keys['ArrowLeft'] || Input.keys['KeyA']) { this.x -= spd; this.tilt = -1; }
+        if (Input.keys['ArrowRight'] || Input.keys['KeyD']) { this.x += spd; this.tilt = 1; }
+        if (Input.keys['ArrowUp'] || Input.keys['KeyW']) this.y -= spd;
+        if (Input.keys['ArrowDown'] || Input.keys['KeyS']) this.y += spd;
         this.x = Math.max(14, Math.min(466, this.x));
         this.y = Math.max(14, Math.min(706, this.y));
 

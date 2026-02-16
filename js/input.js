@@ -265,7 +265,7 @@ const Input = {
         if (this.keys[code]) return true;
         // Touch mappings
         if (!this.touchActive) return false;
-        const deadzone = 15;
+        const deadzone = 20;
         switch (code) {
             case 'ArrowLeft': case 'KeyA': return this.vjoy.active && this.vjoy.dx < -deadzone;
             case 'ArrowRight': case 'KeyD': return this.vjoy.active && this.vjoy.dx > deadzone;
@@ -275,6 +275,19 @@ const Input = {
             case 'ShiftLeft': case 'ShiftRight': return this.touchButtons.slow;
         }
         return false;
+    },
+
+    // Returns -1 to +1 for analog touch joystick axis
+    // axis: 'x' or 'y'
+    touchAxis(axis) {
+        if (!this.touchActive || !this.vjoy.active) return 0;
+        const raw = axis === 'x' ? this.vjoy.dx : this.vjoy.dy;
+        const deadzone = 20;
+        const maxRange = 50;
+        if (Math.abs(raw) < deadzone) return 0;
+        const sign = raw > 0 ? 1 : -1;
+        const magnitude = Math.min(Math.abs(raw) - deadzone, maxRange - deadzone) / (maxRange - deadzone);
+        return sign * magnitude;
     },
 
     wasPressed(code) {
