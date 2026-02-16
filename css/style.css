@@ -1,0 +1,96 @@
+/* ============================================
+   Steampunk Skies - 蒸気空戦記
+   Style Sheet - Responsive + Mobile
+   ============================================ */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    touch-action: none;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+body {
+    background: #0a0a0f;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    min-height: 100dvh;
+    font-family: 'Cinzel', 'Noto Sans JP', serif;
+}
+
+#game-container {
+    position: relative;
+    width: 480px;
+    height: 720px;
+    border: 3px solid #8B6914;
+    border-radius: 4px;
+    box-shadow:
+        0 0 20px rgba(139, 105, 20, 0.5),
+        0 0 60px rgba(139, 105, 20, 0.2),
+        inset 0 0 20px rgba(0, 0, 0, 0.5);
+}
+
+#gameCanvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+    background: #1a1a2e;
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
+}
+
+#overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+/* === Responsive scaling === */
+/* Portrait mobile: fill width */
+@media (max-width: 520px) {
+    #game-container {
+        width: 100vw;
+        height: calc(100vw * 1.5);
+        max-height: 100vh;
+        max-height: 100dvh;
+        border: none;
+        border-radius: 0;
+        box-shadow: none;
+    }
+}
+
+/* Landscape mobile: fill height */
+@media (max-height: 520px) and (orientation: landscape) {
+    #game-container {
+        height: 100vh;
+        height: 100dvh;
+        width: calc(100vh / 1.5);
+        border: none;
+        border-radius: 0;
+        box-shadow: none;
+    }
+}
+
+/* Tall narrow screens */
+@media (max-width: 520px) and (min-aspect-ratio: 2/3) {
+    #game-container {
+        height: 100vh;
+        height: 100dvh;
+        width: calc(100dvh / 1.5);
+    }
+}
